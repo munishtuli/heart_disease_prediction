@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+
+      <div class="login">
+
+	<style>
+   		h1{
+    		text-align: center;
+		color: red;
+		background: yellow;
+		font-family:Algerian;
+    		}
+        </style>
+	<h1>AI Diagnostic Decision Support System : Heart Disease</h1>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}"method="post">
+        <p style="font-family:Courier; color:Blue; font-size: 16px;"><b>Enter Patient's Data</b></p>
+        <label for="age"><b>1. Age (Years):</b> </label>
+        <input type="text" name="age" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+       
+	<br>
+        <label for="sex"><b>2. Sex:</b></label>
+        <!input type="text" name="sex" placeholder="Enter Value" required="required" style="font-size:10pt;height:10px;width:100px;" />
+        <select input type="text"  name="sex" required="">
+        <option disabled="" selected="">Select</option>
+        <option>M</option>
+        <option>F</option>
+        </select>
+
+	<br>
+        <label for="cp"><b>3. Chest Pain (TA-Typical Angina, ATA-Atypical Angina, NAP-Non-Anginal, ASY-Asymptomatic):</b> </label>
+        <!input type="text" name="cp" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+        <select input type="text"  name="cp" required="">
+        <option disabled="" selected="">Select</option>
+        <option>TA</option>
+        <option>ATA</option>
+        <option>NAP</option>
+        <option>ASY</option>
+        </select>
+        
+	<br>
+	<label for="trestbps"><b>4. Resting Blood Pressure (mm Hg):</b> </label>
+        <input type="text" name="trestbps" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+
+	<br>
+	<label for="chol"><b>5. Serum Cholestoral (mg/dl) :</b> </label>
+        <input type="text" name="chol" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+
+        <br>
+	<label for="fbs"><b>6. Fasting Blood Sugar > 120 mg/dl (1-True, 0-False):</b> </label>
+        <!input type="text" name="fbs" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+        <select input type="text"  name="fbs" required="">
+        <option disabled="" selected="">Select</option>
+        <option>0</option>
+        <option>1</option>
+        </select>
+
+	<br>
+	<label for="restecg"><b>7. Resting ECG (Normal, ST-ST/T Wave Abnormality (T Wave Inversions and/or ST Elevation or Depression  > 0.05 mV),
+        LVH-Probable or Definite Left  Ventricular Hypertrophy by Estes’ Criteria:</b> </label>
+        <!input type="text" name="restecg" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+        <select input type="text"  name="restecg" required="">
+        <option disabled="" selected="">Select</option>
+        <option>Normal</option>
+        <option>ST</option>
+        <option>LVH</option>
+        </select>
+	
+	<br>
+	<label for="thalach"><b>8. Maximum Heart Rate Achieved:</b> </label>
+        <input type="text" name="thalach" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+
+	<br>
+	<label for="exang"><b>9. Exercise Induced Angina (Y-Yes, N-No):</b> </label>
+        <!input type="text" name="exang" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+        <select input type="text"  name="exang" required="">
+        <option disabled="" selected="">Select</option>
+        <option>Y</option>
+        <option>N</option>
+        </select>
+
+	<br>
+	<label for="oldpeak"><b>10. ST Depression Induced by Exercise Relative to Rest:</b> </label>
+        <input type="text" name="oldpeak" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+
+	<br>
+	<label for="slope"><b>11. Slope of Peak Exercise ST Segment (Up-Upsloping, Flat-Flat, Down-Downsloping):</b> </label>
+        <!input type="text" name="slope" placeholder="Enter Value" required="required" style="font-size:12pt;height:15px;width:100px;" />
+        <select input type="text"  name="slope" required="">
+        <option disabled="" selected="">Select</option>
+        <option>Up</option>
+        <option>Flat</option>
+        <option>Down</option>
+        </select>
+
+      	<br>
+	<button type="submit" class="btn btn-primary btn-block btn-large"><b>Predict</b></button>
+        <style="font-family:Courier; color:blue; font-size: 16px;"><b>91% Test Accuracy</b>
+
+
+    </form>
+     <p style="font-family:Courier; color:blue; font-size: 16px;"><b>{{prediction_text2}}</b></p>
+     <center><img id="picture1" class="center" src="data:image/png;base64,{{ img_data1 }}"><center>
+     <center><img id="picture2" class="center" src="data:image/png;base64,{{ img_data2 }}"><center>
+ </div>
+
+</body>
+</html>
